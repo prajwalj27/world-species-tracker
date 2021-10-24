@@ -19,6 +19,7 @@
   "homepage": "https://github.com/prajwalj27/world-species-tracker#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "google-spreadsheet": "^3.1.15",
     "googleapis": "^89.0.0",

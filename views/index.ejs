@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biodiversity</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+
+
+
+
+    <link rel="----------JS" href="../public/js/style.js">
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="/" class="navbar-brand" style="font-size: 20px; font-weight: 600; text-transform: uppercase;">
+              World Endangered Species</a>
+          </div>
+
+          <nav>
+            <ul id="menuItems">
+              <li class="nav-item"><a href="/">Home</a></li>
+              <li class="nav-item"><a href="/explore">Explore</a></li>
+              <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-------------<img class="menu-icon" src="images/menu.png" onclick="menutoggle()" >
+          ----------->
+        </div>
+
+        <div class="row">
+          <!-------<div class="col-2 ">
+              <img src="images/cover-final.png" alt=""  width="800px">
+            </div>-------->
+
+          <div class="col-2">
+            <h1 id="An">Explore the Biodiversity </h1>
+
+            <p>
+              Every animal has an influence in the biological system. <br />
+              We are all part of the circle of life,<br />
+              Lets live in peace and not in strife. <br />
+              Preserve Biodiversity
+            </p>
+
+            <a class="btn" href="/explore">Explore Now &#8594;</a>
+          </div>
+
+          <div class="col-2"><img src="images/img1.png" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="supplies">
+        <div class="container-fluid" style="text-align: center;">
+
+            <div id="help+logos" data-aos="fade-up" data-aos-duration="600">
+                <h1 id="logostext"> Explore by Category</h1>
+
+                <div id="logos">
+
+                    <button="o2">
+                      <a href="/least-concern">
+                        <img src="images/lc.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                      
+                    </button>
+
+                    <button="o2"> 
+                      <a href="/vulnerable">
+                        <img src="images/vu.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                    </button>
+
+                    <button="o2"> 
+                      <a href="/near-threatened">
+                        <img src="images/nt.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                    </button>
+
+                    <button="o2">
+                      <a href="/endangered">
+                        <img src="images/en.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                    </button>
+
+                    <button="o2">
+                      <a href="/critically-endangered">
+                        <img src="images/ce.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                    </button>
+
+                    <button="o2">
+                      <a href="/explore">
+                        <img src="images/all.png" alt="" style="height: 90px; width: 80px; margin-right: 30px;" class="ic">
+                      </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--end of container fluid-->
+    </section>
+
+    <!---- footer ------------>
+
+    <footer id="contact">
+      <div class="content">
+        <div class="top">
+          <div class="logo-details">
+            <span class="logo_name">Biodiversity</span>
+          </div>
+          <div class="media-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="link-boxes">
+          <ul class="box">
+            <li class="link_name">Links</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+
+          <ul class="box">
+            <li class="link_name">Explore</li>
+            <li><a href="#">Mammals</a></li>
+            <li><a href="#">Fish</a></li>
+            <li><a href="#">Sea</a></li>
+          </ul>
+
+          <ul class="box">
+            <li class="link_name">Contact</li>
+            <li><a href="#">+91 8879887262</a></li>
+            <li><a href="#">+91 8879887262</a></li>
+            <li><a href="#">contact@Biodiversity.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom-details">
+        <div class="bottom_text">
+          <span class="copyright_text"
+            >Copyright © 2021 <a href="#">Biodoversity.</a></span
+          >
+          <span class="policy_terms">
+            <a href="#">Privacy policy</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!----------JS for Toggle Menu ---------->
+    <script>
+      var menuItems = document.getElementById("menuItems");
+      menuItems.style.maxHeight = "0px";
+      function menutoggle() {
+        if (menuItems.style.maxHeight == "0px") {
+          menuItems.style.maxHeight = "200px";
+        } else {
+          menuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
+    
+  </body>
+</html>

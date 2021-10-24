@@ -1,7 +1,11 @@
 const { google } = require('googleapis');
 const express = require('express');
-require('dotenv').config();
+const ejs = require('ejs');
 const app = express();
+
+
+require('dotenv').config();
+app.set("view engine", "ejs");
 
 let sheets;
 
@@ -11,11 +15,8 @@ const setup = async () => {
   sheets = google.sheets({ version: 'v4', auth });
 }
 
-app.use(express.json());
-
-
-app.get('/species', async (req, res) => {
-	const rangeSpecies = `Sheet1!A2:J`;
+const getData = async () => {
+	const rangeSpecies = `Sheet1!A2:K`;
 
 	const response = await Promise.all([
 		sheets.spreadsheets.values.get({
@@ -31,26 +32,126 @@ app.get('/species', async (req, res) => {
 		name: x[1], 
 		scientificName: x[2], 
 		conservationStatus: x[3],
-		population: x[4],
-		height: x[5],
-		weight: x[6],
-		length: x[7], 
-		places: x[8],
-		description: x[9] 
+		category: x[4],
+		population: x[5],
+		height: x[6],
+		weight: x[7],
+		length: x[8],
+		places: x[9],
+		description: x[10] 
 	  }; 
 	});
-	// for (let i = 0; i < speciesData.length; i++) {
-	// 	if (speciesData[i].conservationStatus.toLowerCase() === 'vulnerable')
-	// 		console.log(speciesData[i].name)
-	// }
-	res.send(speciesData);
+	return speciesData;
+}
+
+app.use(express.json());
+app.use(express.static('public'));
+
+app.get('/vulnerable', (req, res) => {
+	const status = 'vulnerable';
+	let selectedData = [];
+
+	const data = getData();
+	data.then((result) => {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].conservationStatus) {
+				if (result[i].conservationStatus.toLowerCase() === status) {
+					selectedData[i] = result[i];
+				}
+			}
+		}
+		res.render("explore", {result: selectedData, status:"Vulnerable"});
+	 })
+});
+
+app.get('/endangered', (req, res) => {
+	const status = 'endangered'; 
+	let selectedData = [];
+
+	const data = getData();
+	data.then((result) => {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].conservationStatus) {
+				if (result[i].conservationStatus.toLowerCase() === status) {
+					selectedData[i] = result[i];
+				}
+			}
+		}
+		res.render("explore", {result: selectedData, status:"Endangered"});
+	 })
+});
+
+app.get('/near-threatened', (req, res) => {
+	const status = 'near threatened';
+	let selectedData = [];
+
+	const data = getData();
+	data.then((result) => {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].conservationStatus) {
+				if (result[i].conservationStatus.toLowerCase() === status) {
+					selectedData[i] = result[i];
+				}
+			}
+		}
+		res.render("explore", {result: selectedData, status:"Near Threatened"});
+	 })
+});
+
+app.get('/least-concern', (req, res) => {
+	const status = 'least concern';
+	let selectedData = [];
+	
+	const data = getData();
+	data.then((result) => {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].conservationStatus) {
+				if (result[i].conservationStatus.toLowerCase() === status) {
+					selectedData[i] = result[i];
+				}
+			}
+		}
+		res.render("explore", {result: selectedData, status:"Least Concern"});
+	 })
+});
+
+app.get('/critically-endangered', (req, res) => {
+	const status = 'critically endangered' 
+	let selectedData = [];
+
+	const data = getData();
+	data.then((result) => {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].conservationStatus) {
+				if (result[i].conservationStatus.toLowerCase() === status) {
+					selectedData[i] = result[i];
+				}
+			}
+		}
+		res.render("explore", {result: selectedData, status:"Critically Endangered"});
+	 })
+});
+
+app.get('/explore', (req, res) => {
+	const data = getData();
+	data.then(function(result) {
+		res.render("explore", {result: result, status:"All"});
+	 })
+});
+
+app.get('/:id', (req, res) => {
+	const data = getData();
+	data.then(function(result) {
+		res.render("info", {result: result, _id: req.params.id});
+	 })
+});
+
+app.get("/", (req, res) => {
+	res.render("index");
 });
 
 
-app.get('/', (req, res) => {
-	res.send('Successful response.');
-});
-app.listen(process.env.PORT || 8000, () => {
+app.listen(process.env.PORT || 8080, () => {
 	setup();
-	console.log(`Server is listening on port ${process.env.PORT || 8000}`);
+	console.log(`Server is listening on port ${process.env.PORT || 8080}`);
 });
