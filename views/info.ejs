@@ -60,7 +60,7 @@
             <p id="para" style="color: rgb(63, 112, 93)">
               <ol style="list-style-type:none;" id="info">
                 <% if (result[_id - 1].conservationStatus !== "") { %>
-                  <li><span>Status - </span><%= result[_id - 1].conservationStatus%></li>
+                  <li style="font-size: large; color: rgb(38, 66, 56);"><span>Status - </span><%= result[_id - 1].conservationStatus%></li>
                 <%} %>
                 <% if (result[_id - 1].population !== "") { %>
                   <li><span>Population - </span>around <%= result[_id - 1].population%></li>
