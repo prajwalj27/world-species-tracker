@@ -32,7 +32,7 @@ const getData = async () => {
 		name: x[1], 
 		scientificName: x[2], 
 		conservationStatus: x[3],
-		category: x[4],
+		order: x[4],
 		population: x[5],
 		height: x[6],
 		weight: x[7],

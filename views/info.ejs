@@ -65,6 +65,9 @@
                 <% if (result[_id - 1].population !== "") { %>
                   <li><span>Population - </span>around <%= result[_id - 1].population%></li>
                 <%} %>
+                <% if (result[_id - 1].order !== "") { %>
+                  <li><span>Order - </span><%= result[_id - 1].order%></li>
+                <%} %>
                 <% if (result[_id - 1].height !== "") { %>
                   <li><span>Height - </span>approx. <%= result[_id - 1].height%></li>
                 <%} %>
