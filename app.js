@@ -10,38 +10,43 @@ app.set("view engine", "ejs");
 let sheets;
 
 const setup = async () => {
-  const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
+	const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
 
-  sheets = google.sheets({ version: 'v4', auth });
+	sheets = google.sheets({ version: 'v4', auth });
 }
 
 const getData = async () => {
 	const rangeSpecies = `Sheet1!A2:K`;
+	try {
+		const response = await Promise.all([
+			sheets.spreadsheets.values.get({
+				spreadsheetId: process.env.SHEET_ID,
+				range: rangeSpecies,
+			}),
+		]);
 
-	const response = await Promise.all([
-		sheets.spreadsheets.values.get({
-			spreadsheetId: process.env.SHEET_ID,
-			range: rangeSpecies,
-		}),
-	]);
+		const speciesResponse = response[0].data.values;
+		var speciesData = speciesResponse.map(function (x) {
+			return {
+				_id: x[0],
+				name: x[1],
+				scientificName: x[2],
+				conservationStatus: x[3],
+				order: x[4],
+				population: x[5],
+				height: x[6],
+				weight: x[7],
+				length: x[8],
+				places: x[9],
+				description: x[10]
+			};
+		});
+		return speciesData;
+	} catch (e) {
+		console.log(e);
+	}
 
-	const speciesResponse = response[0].data.values;
-	var speciesData = speciesResponse.map(function(x) { 
-	  return { 
-		_id: x[0],
-		name: x[1], 
-		scientificName: x[2], 
-		conservationStatus: x[3],
-		order: x[4],
-		population: x[5],
-		height: x[6],
-		weight: x[7],
-		length: x[8],
-		places: x[9],
-		description: x[10] 
-	  }; 
-	});
-	return speciesData;
+
 }
 
 app.use(express.json());
@@ -60,12 +65,12 @@ app.get('/vulnerable', (req, res) => {
 				}
 			}
 		}
-		res.render("explore", {result: selectedData, status:"Vulnerable"});
-	 })
+		res.render("explore", { result: selectedData, status: "Vulnerable" });
+	})
 });
 
 app.get('/endangered', (req, res) => {
-	const status = 'endangered'; 
+	const status = 'endangered';
 	let selectedData = [];
 
 	const data = getData();
@@ -77,8 +82,8 @@ app.get('/endangered', (req, res) => {
 				}
 			}
 		}
-		res.render("explore", {result: selectedData, status:"Endangered"});
-	 })
+		res.render("explore", { result: selectedData, status: "Endangered" });
+	})
 });
 
 app.get('/near-threatened', (req, res) => {
@@ -94,14 +99,14 @@ app.get('/near-threatened', (req, res) => {
 				}
 			}
 		}
-		res.render("explore", {result: selectedData, status:"Near Threatened"});
-	 })
+		res.render("explore", { result: selectedData, status: "Near Threatened" });
+	})
 });
 
 app.get('/least-concern', (req, res) => {
 	const status = 'least concern';
 	let selectedData = [];
-	
+
 	const data = getData();
 	data.then((result) => {
 		for (let i = 0; i < result.length; i++) {
@@ -111,12 +116,12 @@ app.get('/least-concern', (req, res) => {
 				}
 			}
 		}
-		res.render("explore", {result: selectedData, status:"Least Concern"});
-	 })
+		res.render("explore", { result: selectedData, status: "Least Concern" });
+	})
 });
 
 app.get('/critically-endangered', (req, res) => {
-	const status = 'critically endangered' 
+	const status = 'critically endangered'
 	let selectedData = [];
 
 	const data = getData();
@@ -128,22 +133,22 @@ app.get('/critically-endangered', (req, res) => {
 				}
 			}
 		}
-		res.render("explore", {result: selectedData, status:"Critically Endangered"});
-	 })
+		res.render("explore", { result: selectedData, status: "Critically Endangered" });
+	})
 });
 
 app.get('/explore', (req, res) => {
 	const data = getData();
-	data.then(function(result) {
-		res.render("explore", {result: result, status:"All"});
-	 })
+	data.then(function (result) {
+		res.render("explore", { result: result, status: "All" });
+	})
 });
 
 app.get('/:id', (req, res) => {
 	const data = getData();
-	data.then(function(result) {
-		res.render("info", {result: result, _id: req.params.id});
-	 })
+	data.then(function (result) {
+		res.render("info", { result: result, _id: req.params.id });
+	})
 });
 
 app.get("/", (req, res) => {
