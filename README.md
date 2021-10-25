@@ -23,4 +23,8 @@ We're proud of doing something for the greater good.
 We learnt how to create a fully working web application. With this project, we were also able to learn how to scrape information from the web and display the required information on our website.
 
 ## What's next for World Endangered Species
-We want to create a feature that enables the users to view where these endangered species are found worldwide on a map. From all the data that we collect, we want to make the right use of it by empowering the local communities.
+We want to create a feature that enables the users to view where these endangered species are found worldwide on a map. 
+From all the data that we collect, we want to make the right use of it by empowering the local communities. Wherein all the people present in and around the species would be educated about what they're dealing with and train them with best practices.
+Now the local commmunitites would be responsible and take whatever action required to save the specied from extinction.
+
+![This is an image](https://www.iberdrola.com/wcorp/gc/prod/en_US/comunicacion/especies_extintas_3_res/cuidar_animales_ENG.jpg)
